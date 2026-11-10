@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moja strona</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="#start">Start</a>
+    <a href="#o-nas">O nas</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#sklep">Sklep</a>
+    <a href="#kariera">Kariera</a>
+  </nav>
+  <main>
+    <section id="start">
+      <h1>Strona Startowa</h1>
+      <p>Witaj na naszej stronie głównej! To jest przykładowy tekst wypełniający (filler), który pozwala zobaczyć działanie menu.</p>
+    </section>
+
+    <section id="o-nas">
+      <h2>O nas</h2>
+      <p>Jesteśmy zespołem pasjonatów tworzących nowoczesne i funkcjonalne strony internetowe dla każdego.</p>
+    </section>
+
+    <section id="sklep">
+      <h2>Sklep</h2>
+      <p>Tutaj znajdziesz ofertę naszych produktów, usług oraz specjalnych pakietów promocyjnych.</p>
+    </section>
+
+    <section id="kariera">
+      <h2>Kariera</h2>
+      <p>Chcesz dołączyć do naszego zespołu? Sprawdź aktualne oferty pracy i wyślij nam swojeCV.</p>
+    </section>
+
+    <section id="kontakt">
+      <h2>Kontakt</h2>
+      <p>Skontaktuj się z nami poprzez e-mail: kontakt@twojadomena.pl lub zadzwoń pod numer +48 123 456 789.</p>
+    </section>
+  </main>
+  <aside class="meme-card" aria-label="Losowy mem">
+    <p class="meme-card__label">Mem na dziś</p>
+    <p class="meme-card__top" id="meme-top"></p>
+    <div class="meme-card__image" id="meme-image" aria-hidden="true"></div>
+    <p class="meme-card__bottom" id="meme-bottom" aria-live="polite"></p>
+    <button class="meme-card__button" id="meme-button" type="button">Losuj mema</button>
+  </aside>
+  <script>
+    const memes = [
+      { top: "Kiedy strona działa od razu", image: "😎", bottom: "To na pewno cache." },
+      { top: "Ja: tylko poprawię jeden kolor", image: "💻", bottom: "3 godziny później..." },
+      { top: "Kiedy ktoś mówi „to tylko mała zmiana”", image: "😱", bottom: "Gdzie jest dokumentacja?" },
+      { top: "Gdy kod działa za pierwszym razem", image: "🕵️", bottom: "Nie dotykaj. Nie pytaj." },
+      { top: "Ja po zamknięciu 47 kart", image: "🧠", bottom: "Teraz mogę pracować." },
+      { top: "Kiedy usuwasz console.logi", image: "🫡", bottom: "Dziękuję za służbę." },
+      { top: "Błąd tylko na produkcji", image: "🔥", bottom: "U mnie działa." },
+      { top: "Ja czytający własny kod sprzed tygodnia", image: "🤨", bottom: "Kto to napisał?" },
+      { top: "Kiedy git mówi, że wszystko czyste", image: "✨", bottom: "Cud czy zapomniałem zapisać?" },
+      { top: "Jedna poprawka CSS", image: "🌀", bottom: "Dlaczego ruszyła stopka?" },
+      { top: "Kompilator: jeden mały błąd", image: "📜", bottom: "Na 200 linijek." },
+      { top: "Kiedy zapomniałeś średnika", image: "🔍", bottom: "Misja dla detektywa." },
+      { top: "Ja po napisaniu testu", image: "✅", bottom: "Teraz boję się go uruchomić." },
+      { top: "Kiedy wszystko się kompiluje", image: "🎉", bottom: "To dopiero początek." },
+      { top: "Klient: zmieniłem tylko jedną rzecz", image: "😅", bottom: "Na produkcji, prawda?" },
+      { top: "Kiedy API zwraca 200", image: "🥳", bottom: "A odpowiedź jest pusta." },
+      { top: "Moje hasło do Wi-Fi", image: "🔐", bottom: "To na pewno nie jest w repo." },
+      { top: "Kiedy debugger trafia w punkt", image: "🎯", bottom: "Plan był taki od początku." },
+      { top: "Gdy ktoś pyta, czy strona jest responsywna", image: "📱", bottom: "Na moim monitorze tak." },
+      { top: "Kiedy instalacja trwa 2 sekundy", image: "📦", bottom: "Coś poszło nie tak." },
+      { top: "Ja przed refaktoryzacją", image: "🧹", bottom: "Będzie czyściej." },
+      { top: "Ja po refaktoryzacji", image: "🧩", bottom: "Gdzie podział się mój kod?" },
+      { top: "Kiedy branch nazywa się final-final-2", image: "🌿", bottom: "Tym razem naprawdę final." },
+      { top: "Zespół: zróbmy szybki deploy", image: "🚀", bottom: "Kto ma rollback?" },
+      { top: "Kiedy ekran logowania działa", image: "🔑", bottom: "Nie sprawdzaj odzyskiwania hasła." },
+      { top: "Ja: pamiętam ten skrót klawiszowy", image: "⌨️", bottom: "Ctrl+Z. Zawsze Ctrl+Z." },
+      { top: "Kiedy w końcu naprawisz błąd", image: "🏆", bottom: "I pojawią się dwa nowe." },
+      { top: "Kawa przed pierwszym commitem", image: "☕", bottom: "Kod po pierwszej kawie." },
+      { top: "Kiedy README mówi „TODO”", image: "📖", bottom: "Od 2017 roku." },
+      { top: "Ja testujący na localhost", image: "🏠", bottom: "Internet? Jaki internet?" },
+      { top: "Kiedy literówka psuje cały build", image: "🔤", bottom: "Jedna literka. Cały dzień." },
+      { top: "Kiedy ktoś robi merge bez konfliktów", image: "🕊️", bottom: "Pokój w repozytorium." },
+      { top: "Strona ładuje się błyskawicznie", image: "⚡", bottom: "Na moim komputerze." },
+      { top: "Ja w piątek o 16:59", image: "🏃", bottom: "Nie wdrażaj niczego." },
+      { top: "Kiedy masz 99+ powiadomień", image: "🔔", bottom: "To pewnie nic pilnego." },
+      { top: "Kiedy ktoś mówi „zróbmy to od zera”", image: "🧱", bottom: "A co z tymi 80 plikami?" },
+      { top: "Automatyczne formatowanie kodu", image: "💅", bottom: "Przynajmniej coś tu jest poukładane." },
+      { top: "Kiedy przez godzinę szukasz błędu", image: "🪞", bottom: "Pomyłka była w nazwie pliku." },
+      { top: "Kiedy użytkownik klika przycisk 12 razy", image: "🖱️", bottom: "Teraz mamy 12 zamówień." },
+      { top: "Mój plan na dziś", image: "📝", bottom: "Napisać plan na jutro." },
+      { top: "Kiedy ktoś pyta o deadline", image: "🗓️", bottom: "Zależy, czy liczymy weekend." },
+      { top: "Kiedy przypadkiem zamkniesz terminal", image: "👋", bottom: "Do zobaczenia, wszystkie komendy." },
+      { top: "Kiedy kod przechodzi code review", image: "🥹", bottom: "Można już oddychać." },
+      { top: "Ja i moje 36 otwartych kart", image: "🗂️", bottom: "Każda jest ważna." },
+      { top: "Kiedy ktoś poprawia formatowanie w całym pliku", image: "🌊", bottom: "Diff większy niż funkcja." },
+      { top: "Błąd zniknął po restarcie", image: "👻", bottom: "Nawet nie wiem, co się stało." },
+      { top: "Kiedy wreszcie kończysz projekt", image: "🎈", bottom: "Jeszcze tylko deploy." },
+      { top: "Programista: zrobię sobie przerwę", image: "⏱️", bottom: "Najpierw tylko sprawdzę jeden bug." }
+    ];
+    const memeTop = document.querySelector("#meme-top");
+    const memeImage = document.querySelector("#meme-image");
+    const memeBottom = document.querySelector("#meme-bottom");
+    const memeButton = document.querySelector("#meme-button");
+    let previousMeme = -1;
+
+    function showRandomMeme() {
+      let memeIndex;
+      do {
+        memeIndex = Math.floor(Math.random() * memes.length);
+      } while (memeIndex === previousMeme);
+
+      previousMeme = memeIndex;
+      const meme = memes[memeIndex];
+      memeTop.textContent = meme.top;
+      memeImage.textContent = meme.image;
+      memeBottom.textContent = meme.bottom;
+    }
+
+    memeButton.addEventListener("click", showRandomMeme);
+    showRandomMeme();
+  </script>
+</body>
+</html>
